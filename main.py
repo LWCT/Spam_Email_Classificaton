@@ -1,4 +1,7 @@
+import sys
+
 import pandas as pd
+from PyQt5.QtWidgets import QApplication, QMainWindow
 import time
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
@@ -9,6 +12,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import svm
+
+from UI.Ui_main_my import Ui_main_my
+
+
 
 
 # 加载数据并记录时间
@@ -111,7 +118,23 @@ def compare_models():
 
     total_end_time = time.time()  # 记录总的训练和评估时间
     print(f"\n所有模型训练和评估完成，全部耗时: {total_end_time - start_time:.2f} 秒")  # 输出总耗时
+    return models,vectorizer
+
+#创建ui窗口
+def main():
+    # 创建应用程序实例
+    app = QApplication(sys.argv)
 
 
-# 执行模型比较
-compare_models()
+    # 创建主窗口
+    window = QMainWindow()
+    main_ui = Ui_main_my()
+    main_ui.setupUi(window)
+    window.show()
+
+    # 运行事件循环
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()
