@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from lightgbm import LGBMClassifier
 from sklearn.metrics import accuracy_score, classification_report
+import joblib
 
 # 1. 读取 spam 和 ham 数据文件
 with open('spam_data.txt', 'r', encoding='utf-8') as f:
@@ -34,6 +35,8 @@ X_test_counts = vectorizer.transform(X_test)        # 测试集 词频矩阵
 clf = LGBMClassifier()
 clf.fit(X_train_counts, y_train)
 
+joblib.dump(clf, 'lightgbm_model.pkl')  # 保存训练好的模型
+joblib.dump(vectorizer, 'countvectorizer_lightgbm.pkl')  # 保存词频向量化器
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)
 
