@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c6317401-c9f0-46fc-92c3-70ce4b805ca9" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/countvectorizer_random_forest.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/countvectorizer_svm.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/lightgbm_model.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/logistic_regression_model.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/svm_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Spam_Email_Classificaton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Spam_Email_Classificaton.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RF.py" beforeDir="false" afterPath="$PROJECT_DIR$/RF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SVM.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/Ui_main_my.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Ui_main_my.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/main.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XGBoost.py" beforeDir="false" afterPath="$PROJECT_DIR$/XGBoost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countvectorizer_bayes.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/countvectorizer_lightgbm.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countvectorizer_logreg.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/countvectorizer_logistic_regression.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countvectorizer_randomforest.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/countvectorizer_naive_bayes.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countvectorizer_svm.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/countvectorizer_xgboost.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/countvectorizer_xgboost.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/naive_bayes_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/naive_bayes_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/randomforest_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/random_forest_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/svm_model.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xgboost_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/models/xgboost_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/朴素贝叶斯分类.py" beforeDir="false" afterPath="$PROJECT_DIR$/朴素贝叶斯分类.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/逻辑回归.py" beforeDir="false" afterPath="$PROJECT_DIR$/逻辑回归.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2pHpFvqc5eilCF4KpAvgi2TxIsL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/pythonProject/Spam_Email_Classificaton/temp"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\pythonProject\Spam_Email_Classificaton\temp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\pythonProject\Spam_Email_Classificaton\temp" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spam_Email_Classificaton" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="c6317401-c9f0-46fc-92c3-70ce4b805ca9" name="更改" comment="" />
+      <created>1732432754271</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732432754271</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/predict_function.py</url>
+          <line>171</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/UI/Ui_main_my.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
