@@ -3,6 +3,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score, classification_report
+import joblib
 
 # 1. 读取 spam 和 ham 数据文件
 with open('data/spam_data.txt', 'r', encoding= 'utf-8') as f:
@@ -34,6 +35,8 @@ X_test_counts = vectorizer.transform(X_test)#测试集 词频矩阵
 clf = LogisticRegression(max_iter=1000)
 clf.fit(X_train_counts, y_train)
 
+joblib.dump(clf, 'logistic_regression_model.pkl')  # 保存训练好的逻辑回归模型
+joblib.dump(vectorizer, 'countvectorizer_logreg.pkl')  # 保存词频向量化器
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)
 

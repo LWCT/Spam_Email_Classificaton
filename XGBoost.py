@@ -3,12 +3,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report
+import joblib
 
 # 1. 读取 spam 和 ham 数据文件
-with open('spam_data.txt', 'r', encoding='utf-8') as f:
+with open('data/spam_data.txt', 'r', encoding='utf-8') as f:
     spam_texts = f.readlines()
 
-with open('ham_data.txt', 'r', encoding='utf-8') as f:
+with open('data/ham_data.txt', 'r', encoding='utf-8') as f:
     ham_texts = f.readlines()
 
 # 2. 创建数据框，并添加标签
@@ -33,6 +34,9 @@ X_test_counts = vectorizer.transform(X_test)        # 测试集 词频矩阵
 # 7. 训练XGBoost分类器
 clf = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 clf.fit(X_train_counts, y_train)
+
+joblib.dump(clf, 'xgboost_model.pkl')  # 保存训练好的XGBoost模型
+joblib.dump(vectorizer, 'countvectorizer_xgboost.pkl')  # 保存词频向量化器
 
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)
