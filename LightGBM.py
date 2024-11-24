@@ -1,52 +1,85 @@
-import pandas as pd
+import re
+import joblib
+from lightgbm import LGBMClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
-from lightgbm import LGBMClassifier
 from sklearn.metrics import accuracy_score, classification_report
-import joblib
+import handle_data
 
-# 1. 读取 spam 和 ham 数据文件
-with open('spam_data.txt', 'r', encoding='utf-8') as f:
-    spam_texts = f.readlines()
 
-with open('ham_data.txt', 'r', encoding='utf-8') as f:
-    ham_texts = f.readlines()
+class SpamEmailClassifierLightGBM:  # 训练
+    def __init__(self, model_file='lightgbm_model.pkl', vectorizer_file='countvectorizer_lightgbm.pkl'):
+        self.model_file = model_file
+        self.vectorizer_file = vectorizer_file
+        self.vectorizer = None
+        self.model = None
 
-# 2. 创建数据框，并添加标签
-spam_data = pd.DataFrame({'text': spam_texts, 'label': 'spam'})
-ham_data = pd.DataFrame({'text': ham_texts, 'label': 'ham'})
+    def train(self, X, y):
+        """
+        训练LightGBM分类器
+        :param X: 训练数据特征
+        :param y: 训练数据标签
+        """
+        # 文本向量化
+        self.vectorizer = CountVectorizer(max_features=10000)
+        X_vectorized = self.vectorizer.fit_transform(X)
 
-# 3. 合并数据集
-data = pd.concat([spam_data, ham_data], ignore_index=True)
+        # 转换为 float32 类型（LightGBM要求特征数据为 float32 或 float64）
+        X_vectorized = X_vectorized.astype('float32')
 
-# 4. 分离文本和标签
-X = data['text']
-y = data['label'].map({'ham': 0, 'spam': 1})  # 将标签转换为0和1
+        # 划分训练集和测试集
+        X_train, X_test, y_train, y_test = train_test_split(X_vectorized, y, test_size=0.2, random_state=42)
 
-# 5. 将数据集拆分为训练集和测试集
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        # 训练LightGBM模型
+        self.model = LGBMClassifier()
+        self.model.fit(X_train, y_train)
 
-# 6. 文本特征提取 (词袋模型)
-vectorizer = CountVectorizer()
-X_train_counts = vectorizer.fit_transform(X_train)  # 训练集 词汇表和词频矩阵
-X_test_counts = vectorizer.transform(X_test)        # 测试集 词频矩阵
+        # 保存模型和矢量器
+        joblib.dump(self.model, self.model_file)
+        joblib.dump(self.vectorizer, self.vectorizer_file)
 
-# 7. 训练LightGBM分类器
-clf = LGBMClassifier()
-clf.fit(X_train_counts, y_train)
+        # 在测试集上进行预测
+        y_pred = self.model.predict(X_test)
 
-joblib.dump(clf, 'lightgbm_model.pkl')  # 保存训练好的模型
-joblib.dump(vectorizer, 'countvectorizer_lightgbm.pkl')  # 保存词频向量化器
-# 8. 在测试集上进行预测
-y_pred = clf.predict(X_test_counts)
+        # 输出结果
+        print("LightGBM Classifier Results:")
+        print("Accuracy:", accuracy_score(y_test, y_pred))
+        print("Classification Report:\n", classification_report(y_test, y_pred))
 
-# 9. 输出结果
-print("LightGBM Classifier Results:")
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Classification Report:\n", classification_report(y_test, y_pred))
+    def load_model(self):
+        """
+        加载已训练的模型和矢量器
+        """
+        self.model = joblib.load(self.model_file)
+        self.vectorizer = joblib.load(self.vectorizer_file)
 
-# 测试新的文本
-new_texts = ["专属优惠，立即赢取奖品！", "你好，我们明天几点见面？"]
-new_texts_counts = vectorizer.transform(new_texts)
-predictions = clf.predict(new_texts_counts)
-print("Predictions for new texts:", predictions)
+    def predict(self, new_texts):
+        """
+        使用训练好的模型对新的文本进行预测
+        :param new_texts: 待预测的文本列表
+        :return: 预测的结果
+        """
+        new_texts_counts = self.vectorizer.transform(new_texts)
+
+        # 转换为 float32 类型，确保数据类型正确
+        new_texts_counts = new_texts_counts.astype('float32')
+
+        predictions = self.model.predict(new_texts_counts)
+        return predictions
+
+
+if __name__ == "__main__":
+    # 创建数据处理类和模型类实例
+    data_handler = handle_data.SpamEmailDataHandler_local()
+    classifier = SpamEmailClassifierLightGBM()
+
+    # 加载数据
+    X_all, y_all = data_handler.load_all_data()
+
+    # 训练LightGBM模型
+    classifier.train(X_all, y_all)
+
+    # 测试新的文本
+    new_texts = ["专属优惠，立即赢取奖品！", "你好，我们明天几点见面？"]
+    predictions = classifier.predict(new_texts)
+    print("Predictions for new texts:", predictions)

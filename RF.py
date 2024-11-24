@@ -1,50 +1,82 @@
-import pandas as pd
+import re
+import joblib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score, classification_report
-import joblib
-# 1. 读取 spam 和 ham 数据文件
-with open('data/spam_data.txt', 'r', encoding= 'utf-8') as f:
-    spam_texts = f.readlines()
+import handle_data
 
-with open('data/ham_data.txt', 'r', encoding= 'utf-8') as f:
-    ham_texts = f.readlines()
 
-# 2. 创建数据框，并添加标签
-spam_data = pd.DataFrame({'text': spam_texts, 'label': 'spam'})
-ham_data = pd.DataFrame({'text': ham_texts, 'label': 'ham'})
 
-# 3. 合并数据集
-data = pd.concat([spam_data, ham_data], ignore_index=True)
+class SpamEmailClassifierRandomForest: # 训练
+    def __init__(self, model_file='randomforest_model.pkl', vectorizer_file='countvectorizer_randomforest.pkl'):
+        self.model_file = model_file
+        self.vectorizer_file = vectorizer_file
+        self.vectorizer = None
+        self.model = None
 
-# 4. 分离文本和标签
-X = data['text']
-y = data['label']
+    def train(self, X, y):
+        """
+        训练随机森林分类器
+        :param X: 训练数据特征
+        :param y: 训练数据标签
+        """
+        # 文本向量化
+        self.vectorizer = CountVectorizer(max_features=10000)
+        X_vectorized = self.vectorizer.fit_transform(X)
 
-# 5. 将数据集拆分为训练集和测试集
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        # 转换为 float32 类型（RandomForest也可以接受这种类型）
+        X_vectorized = X_vectorized.astype('float32')
 
-# 6. 文本特征提取 (词袋模型)
-vectorizer = CountVectorizer()
-X_train_counts = vectorizer.fit_transform(X_train)#训练集 词汇表和词频矩阵
-X_test_counts = vectorizer.transform(X_test)#测试集 词频矩阵
+        # 划分训练集和测试集
+        X_train, X_test, y_train, y_test = train_test_split(X_vectorized, y, test_size=0.2, random_state=42)
 
-# 7. 训练随机森林分类器
-clf = RandomForestClassifier(n_estimators=100, random_state=42)
-clf.fit(X_train_counts, y_train)
+        # 训练随机森林模型
+        self.model = RandomForestClassifier(n_estimators=100, random_state=42)
+        self.model.fit(X_train, y_train)
 
-joblib.dump(clf, 'randomforest_model.pkl')  # 保存训练好的RandomForest模型
-joblib.dump(vectorizer, 'countvectorizer_randomforest.pkl')  # 保存词频向量化器
-# 8. 在测试集上进行预测
-y_pred = clf.predict(X_test_counts)
+        # 保存模型和矢量器
+        joblib.dump(self.model, self.model_file)
+        joblib.dump(self.vectorizer, self.vectorizer_file)
 
-# 9. 输出结果
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Classification Report:\n", classification_report(y_test, y_pred))
+        # 在测试集上进行预测
+        y_pred = self.model.predict(X_test)
 
-# 测试新的文本
-new_texts = ["专属优惠，立即赢取奖品！", "你好，我们明天几点见面？"]
-new_texts_counts = vectorizer.transform(new_texts)
-predictions = clf.predict(new_texts_counts)
-print("Predictions for new texts:", predictions)
+        # 输出结果
+        print("Random Forest Classifier Results:")
+        print("Accuracy:", accuracy_score(y_test, y_pred))
+        print("Classification Report:\n", classification_report(y_test, y_pred))
+
+    def load_model(self):
+        """
+        加载已训练的模型和矢量器
+        """
+        self.model = joblib.load(self.model_file)
+        self.vectorizer = joblib.load(self.vectorizer_file)
+
+    def predict(self, new_texts):
+        """
+        使用训练好的模型对新的文本进行预测
+        :param new_texts: 待预测的文本列表
+        :return: 预测的结果
+        """
+        new_texts_counts = self.vectorizer.transform(new_texts)
+        predictions = self.model.predict(new_texts_counts)
+        return predictions
+
+
+if __name__ == "__main__":
+    # 创建数据处理类和模型类实例
+    data_handler = handle_data.SpamEmailDataHandler_local()
+    classifier = SpamEmailClassifierRandomForest()
+
+    # 加载数据
+    X_all, y_all = data_handler.load_all_data()
+
+    # 训练随机森林模型
+    classifier.train(X_all, y_all)
+
+    # 测试新的文本
+    new_texts = ["专属优惠，立即赢取奖品！", "你好，我们明天几点见面？"]
+    predictions = classifier.predict(new_texts)
+    print("Predictions for new texts:", predictions)
