@@ -25,8 +25,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = svm.SVC(kernel='linear')
 model.fit(X_train, y_train)
 #保存模型和矢量器
-joblib.dump(model, 'svm_model.pkl')
-joblib.dump(vectorizer, 'countvectorizer_svm.pkl')
+joblib.dump(model, 'models/svm_model.pkl')
+joblib.dump(vectorizer, 'models/countvectorizer_svm.pkl')
 
 # 预测并评估模型
 y_pred = model.predict(X_test)

@@ -38,8 +38,8 @@ clf.fit(X_train_counts, y_train)
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)
 
-joblib.dump(clf, 'naive_bayes_model.pkl')
-joblib.dump(vectorizer, 'countvectorizer_bayes.pkl')
+joblib.dump(clf, 'models/naive_bayes_model.pkl')
+joblib.dump(vectorizer, 'models/countvectorizer_naive_bayes.pkl')
 # 9. 输出结果
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))

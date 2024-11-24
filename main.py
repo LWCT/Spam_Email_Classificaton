@@ -120,10 +120,6 @@ def compare_models():
     print(f"\n所有模型训练和评估完成，全部耗时: {total_end_time - start_time:.2f} 秒")  # 输出总耗时
     return models,vectorizer
 
-
-# 执行模型比较
-models, vectorizer = compare_models()
-
 #创建ui窗口
 def main():
     # 创建应用程序实例

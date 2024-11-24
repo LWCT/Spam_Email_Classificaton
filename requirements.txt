@@ -1,5 +1,0 @@
-pandas
-scikit-learn
-lightgbm
-xgboost
-PyQt5

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_main(object):
     def setupUi(self, main):
         main.setObjectName("main")
-        main.resize(889, 667)
+        main.resize(889, 818)
         self.horizontalLayoutWidget = QtWidgets.QWidget(main)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(40, 20, 831, 541))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -34,6 +34,13 @@ class Ui_main(object):
         self.clearButton = QtWidgets.QPushButton(main)
         self.clearButton.setGeometry(QtCore.QRect(460, 560, 411, 41))
         self.clearButton.setObjectName("clearButton")
+        self.reTrainButton = QtWidgets.QPushButton(main)
+        self.reTrainButton.setGeometry(QtCore.QRect(40, 610, 131, 191))
+        self.reTrainButton.setObjectName("reTrainButton")
+        self.trainResultText = QtWidgets.QTextEdit(main)
+        self.trainResultText.setGeometry(QtCore.QRect(180, 610, 691, 191))
+        self.trainResultText.setReadOnly(True)
+        self.trainResultText.setObjectName("trainResultText")
 
         self.retranslateUi(main)
         QtCore.QMetaObject.connectSlotsByName(main)
@@ -43,3 +50,4 @@ class Ui_main(object):
         main.setWindowTitle(_translate("main", "Form"))
         self.checkButton.setText(_translate("main", "检查邮件"))
         self.clearButton.setText(_translate("main", "清理检查结果"))
+        self.reTrainButton.setText(_translate("main", "重新训练"))

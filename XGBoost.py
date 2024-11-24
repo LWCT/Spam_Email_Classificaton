@@ -35,8 +35,8 @@ X_test_counts = vectorizer.transform(X_test)        # 测试集 词频矩阵
 clf = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 clf.fit(X_train_counts, y_train)
 
-joblib.dump(clf, 'xgboost_model.pkl')  # 保存训练好的XGBoost模型
-joblib.dump(vectorizer, 'countvectorizer_xgboost.pkl')  # 保存词频向量化器
+joblib.dump(clf, 'models/xgboost_model.pkl')  # 保存训练好的XGBoost模型
+joblib.dump(vectorizer, 'models/countvectorizer_xgboost.pkl')  # 保存词频向量化器
 
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)

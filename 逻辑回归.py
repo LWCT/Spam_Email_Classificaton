@@ -35,8 +35,8 @@ X_test_counts = vectorizer.transform(X_test)#测试集 词频矩阵
 clf = LogisticRegression(max_iter=1000)
 clf.fit(X_train_counts, y_train)
 
-joblib.dump(clf, 'logistic_regression_model.pkl')  # 保存训练好的逻辑回归模型
-joblib.dump(vectorizer, 'countvectorizer_logreg.pkl')  # 保存词频向量化器
+joblib.dump(clf, 'models/logistic_regression_model.pkl')  # 保存训练好的逻辑回归模型
+joblib.dump(vectorizer, 'models/countvectorizer_logreg.pkl')  # 保存词频向量化器
 # 8. 在测试集上进行预测
 y_pred = clf.predict(X_test_counts)
 
