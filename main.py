@@ -1,4 +1,7 @@
+import sys
+
 import pandas as pd
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score, classification_report
@@ -8,6 +11,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import svm
+
+from UI.Ui_main_my import Ui_main_my
+
 
 # 加载数据
 def load_data():
@@ -55,4 +61,25 @@ def compare_models():
         print(f"准确率: {accuracy:.2f}")
         print("分类报告:\n", report)
 
-compare_models()
+    return models,vectorizer
+
+models, vectorizer = compare_models()
+
+#创建ui窗口
+def main():
+    # 创建应用程序实例
+    app = QApplication(sys.argv)
+
+
+    # 创建主窗口
+    window = QMainWindow()
+    main_ui = Ui_main_my()
+    main_ui.setupUi(window)
+    window.show()
+
+    # 运行事件循环
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()

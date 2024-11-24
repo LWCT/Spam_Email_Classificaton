@@ -5,10 +5,10 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
 # 1. 读取 spam 和 ham 数据文件
-with open('spam_data.txt', 'r', encoding='utf-8') as f:
+with open('data/spam_data.txt', 'r', encoding='utf-8') as f:
     spam_texts = f.readlines()
 
-with open('ham_data.txt', 'r', encoding='utf-8') as f:
+with open('data/ham_data.txt', 'r', encoding='utf-8') as f:
     ham_texts = f.readlines()
 
 # 2. 创建数据框，并添加标签
